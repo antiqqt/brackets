@@ -1,23 +1,22 @@
 module.exports = function check(str, bracketsConfig) {
-  // First, we make hashtable to keep our brackets pairs;
+  // First, we make hashtable to keep our brackets pairs
   let pairs = {};
   bracketsConfig.forEach((item) => {
     pairs[item[0]] = item[1];
   });
 
-  // Then we implement a stack and fill it with left brackets
-  // until we find right one
+  // Then we implement a stack
   let stack = [];
   for (let i = 0; i < str.length; i++) {
     const elem = str[i];
 
-    // Check for same brackets;
+    // Check for same brackets
     if (pairs[elem] === elem && stack[stack.length - 1] === elem) {
       stack.pop();
       continue;
     }
 
-    // Check for ordinary brackets;
+    // Check for ordinary brackets
     if (pairs[elem]) {
       stack.push(elem);
     } else {
